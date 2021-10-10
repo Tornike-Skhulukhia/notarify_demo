@@ -3,7 +3,7 @@
 
 # how to run
 
-# viewving data in django admin 
+# viewing data in django admin 
 visit: ...
 
 # basic project tree overview
