@@ -24,5 +24,9 @@ def send_email(sender, password, receiver, subject, msg):
         logging.info(f"Email sent to {receiver} with subject {subject}")
         return True
     except:
+
         logging.info(f"can not send email to {receiver} with subject {subject}")
+        import traceback
+
+        logging.warning(traceback.format_exc())
         return False

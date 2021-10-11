@@ -16,10 +16,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Form() {
     const [loading_status, switchLoadingStatusTo] = useState(0);
-    const [name, setName] = useState();
-    const [lastname, setLastName] = useState();
-    const [email, setEmail] = useState();
-    const [company_tax_code, setCompanyTaxCode] = useState();
+    const [name, setName] = useState("");
+    const [lastname, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [company_tax_code, setCompanyTaxCode] = useState("");
     const [country, setCountry] = useState("Georgia");
     
 
