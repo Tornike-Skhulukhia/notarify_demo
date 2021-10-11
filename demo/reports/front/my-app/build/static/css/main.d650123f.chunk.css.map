@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAAA,EACE,+BACF,CAEA,SACE,SAAU,CACV,eAAgB,CAChB,WACF,CAEA,qBACE,qBACF","file":"main.d650123f.chunk.css","sourcesContent":["* {\n  font-family: \"Roboto\", sans-serif;\n}\n\n.content {\n  width: 90%;\n  max-width: 900px;\n  margin: auto;\n}\n\n.content .inputs > div {\n  margin: 10px !important;\n}\n"]}
