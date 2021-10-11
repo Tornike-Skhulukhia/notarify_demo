@@ -1,13 +1,13 @@
 import uuid
 
-from django.conf import settings
+# from django.conf import settings
 from django.db import models
 
 from .services.generate_pdf_report import generate_pdf_report as create_pdf
 
 
 def _get_random_transaction_id_str():
-    return str(uuid.uuid4())
+    return str(uuid.uuid4())[:8]  # for just now
 
 
 class Report(models.Model):
@@ -23,23 +23,14 @@ class Report(models.Model):
     # report generation end time
     created_at = models.DateTimeField(auto_now_add=True)
 
-    # # report pdf file path
-    generated_report = models.FilePathField(
-        path=settings.GENERATED_PDF_REPORTS_FOLDER,
-        match=".pdf",
-        null=True,
-        blank=True,
-        # editable=False,
-    )
-
     # user supplied data for report
     name = models.CharField(max_length=100, blank=True, null=True)
 
     last_name = models.CharField(max_length=100, blank=True, null=True)
 
-    role = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField()
 
-    email = models.EmailField(blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)
 
     company_tax_code = models.CharField(max_length=30, blank=True, null=True)
 

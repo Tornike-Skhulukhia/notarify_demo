@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,16 +32,22 @@ ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
 # Application definition
 
 INSTALLED_APPS = [
+    # Our Project
     "reports.apps.ReportsConfig",
+    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third party
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -55,7 +62,7 @@ ROOT_URLCONF = "demo.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "reports" / "front"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -125,8 +132,17 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-GENERATED_PDF_REPORTS_FOLDER = BASE_DIR / "PDF_Reports"
 
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "media"
+
+GENERATED_PDF_REPORTS_FOLDER = MEDIA_ROOT / "generated_reports"
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+STATICFILES_DIRS = [BASE_DIR / "reports" / "front" / "my-app" / "build" / "static"]
+
+# to send emails
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
+SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD")

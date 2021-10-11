@@ -1,8 +1,8 @@
+import logging
 import uuid
 from datetime import datetime
 
 from fpdf import FPDF
-
 
 FONT = "times"
 
@@ -22,10 +22,12 @@ def generate_pdf_report(user_data, report_id, pdf_file_path):
     generates and saves pdf files using given user_data.
 
     args:
-        1. user_data - list of lists/tuples containing key/values to show in document
+        1. user_data - dictionary of supplied field & value pairs to show in document
         2. report_id - report id string shown in pdf title
         3. pdf_file_path - full path to save generated pdf file in
     """
+    logging.info(f"Processing report N {report_id}")
+
     created_at = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
 
     # use portrait mode
@@ -38,13 +40,13 @@ def generate_pdf_report(user_data, report_id, pdf_file_path):
     # header
     pdf.set_font(size=20)
     pdf.cell(
-        txt=f"Report N{report_id} | {created_at}", h=12, center=True, ln=1, border="B"
+        txt=f"Report {report_id} | {created_at}", h=12, center=True, ln=1, border="B"
     )
 
     pdf.set_font(size=14)
     pdf.ln(h=4)
 
-    for question, answer in user_data:
+    for question, answer in user_data.items():
         # question
         pdf.set_font(style="B")
         pdf.cell(txt=" " * 10 + f"{question}:", w=100, h=16, ln=0)
@@ -58,7 +60,9 @@ def generate_pdf_report(user_data, report_id, pdf_file_path):
 
     pdf.set_y(13)
     pdf.set_x(23)
-    pdf.image("notarify.png", w=23, link="https://notarify.io/")
+    pdf.image("reports/services/notarify.png", w=23, link="https://notarify.io/")
 
     # Generate
+    logging.info(f"Processing for report N {report_id} completed")
+
     pdf.output(pdf_file_path)
