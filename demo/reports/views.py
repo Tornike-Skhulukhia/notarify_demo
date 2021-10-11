@@ -39,7 +39,6 @@ def handle_data_submission(request):
 
     form = ReportForm(request.POST, request.FILES)
 
-    breakpoint()
     if not form.is_valid():
         return JsonResponse({"errors": [", ".join(i) for i in form.errors.values()]})
 
