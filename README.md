@@ -20,6 +20,8 @@ python manage.py runserver
 
 # viewing data in django admin
 
+Login info: username: tornike, password: 123.
+
 visit: http://localhost:8000/admin/reports/report/ to see info about generated reports and user supplied data in django admin.
 We can identify report with its id from url that was sent in email and see corresponding
 report here, for example, if link is http://localhost:8000/media/generated_reports/f0df87c4.pdf,
