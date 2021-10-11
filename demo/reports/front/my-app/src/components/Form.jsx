@@ -40,7 +40,7 @@ export default function Form() {
         console.log("Sending ", data)
 
         axios.post(
-            "http://localhost:8000/reports/api/handle_data_submission/",
+            "/reports/api/handle_data_submission/",
             data,
             {headers: {'Content-Type': 'multipart/form-data'}}
         )
