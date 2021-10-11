@@ -24,15 +24,15 @@ class Report(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     # user supplied data for report
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
-    last_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
 
     email = models.EmailField()
 
-    country = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, blank=True, null=True)
 
-    company_tax_code = models.CharField(max_length=30)
+    company_tax_code = models.CharField(max_length=30, blank=True, null=True)
 
     document_picture = models.ImageField(
         upload_to="uploaded_images", null=True, blank=True
