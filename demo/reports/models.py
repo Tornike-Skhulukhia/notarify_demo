@@ -28,7 +28,7 @@ class Report(models.Model):
 
     last_name = models.CharField(max_length=100, blank=True, null=True)
 
-    email = models.EmailField()
+    email = models.EmailField(blank=True, null=True)
 
     country = models.CharField(max_length=100, blank=True, null=True)
 
